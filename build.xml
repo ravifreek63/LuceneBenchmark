@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="LuceneBenchmark" default="compile" basedir =".">
+<description> Build file for Lucene Benchmark </description>
+
+<property name="src" value="src"></property>
+<property name="build" value="build"></property>
+<property name="dist" value="dist"></property>
+<property name="jars" value="jars"></property>
+
+<target name="compile" description ="compile task">
+	<javac srcdir="${src}" destdir="${build}">
+	   <classpath>
+               <fileset dir="${jars}">
+                  <include name="**/*.jar" />
+               </fileset>
+         </classpath>
+	</javac>
+</target>
+
+<target name="clean" description="clean up" >
+    <!-- Delete the ${build} and ${dist} directory trees -->
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+</target>
+
+</project>
