@@ -7,7 +7,12 @@
 <property name="dist" value="dist"></property>
 <property name="jars" value="jars"></property>
 
-<target name="compile" description ="compile task">
+<target name ="createDir" description="creates the necessary directories if they do not exist">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${build}"/>
+</target>
+
+<target name="compile" depends="createDir" description ="compile task">
 	<javac srcdir="${src}" destdir="${build}">
 	   <classpath>
                <fileset dir="${jars}">
