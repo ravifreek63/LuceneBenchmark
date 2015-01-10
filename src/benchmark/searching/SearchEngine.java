@@ -14,8 +14,10 @@ import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.TopScoreDocCollector;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
@@ -34,10 +36,13 @@ public class SearchEngine {
         parser = new QueryParser("content", new StandardAnalyzer());        
     }
 
-    public TopDocs performSearch(String queryString, int n)
+    public ScoreDoc[] performSearch(String queryString, int n)
     throws IOException, ParseException {
-        Query query = parser.parse(queryString);
-        return searcher.search(query, n);
+    	TopScoreDocCollector collector = TopScoreDocCollector.create(1, true);
+    	Query query = parser.parse(queryString);
+    	searcher.search(query, collector);
+    	ScoreDoc[] hits = collector.topDocs().scoreDocs;
+        return hits;
     }
 
     public Document getDocument(int docId)

@@ -47,10 +47,11 @@ public class Indexer {
     public void addEntry() throws IOException {
         IndexWriter writer = getIndexWriter(false);
         Document doc = new Document();
+        doc.add(new StringField("title", "doc-title", Field.Store.YES));
         doc.add(new StringField("id", "a", Field.Store.YES));
         doc.add(new StringField("name", "b", Field.Store.YES));
         doc.add(new StringField("city", "c", Field.Store.YES));
-        doc.add(new TextField("content", "abc", Field.Store.NO));
+        doc.add(new TextField("content", "a b c", Field.Store.NO));
         writer.addDocument(doc);
     }
 
