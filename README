@@ -1,4 +1,9 @@
 This is a code that creates a Lucene benchmark. In order to run, the build file can be used using the ant command.
+Code Structure: The main class is in the benchmark.harness package. The name of the class is Benchmark. 
+The class Indexer in the package benchmark.indexing is used to create an index. It creates an in-memory index using RAMDirectory. 
+The class SearchEngine in the package benchmark.searching is used to search for documents. 
+
+The example can be looked from - http://javatechniques.com/blog/lucene-in-memory-text-search-example/
 
 
 CREATED BY: Ravi Tandon
