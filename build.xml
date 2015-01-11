@@ -28,9 +28,6 @@
 
 <manifestclasspath property="mf.classpath" jarfile="${dist-jar}">
 	<classpath>
-		<fileset dir ="${build}/benchmark/harness/"/>
-  		<fileset dir ="${build}/benchmark/indexing/"/>
- 		<fileset dir ="${build}/benchmark/searching/"/>
 		<fileset dir="${jars}"><include name="**/*.jar"/></fileset>
 	</classpath>
 </manifestclasspath>

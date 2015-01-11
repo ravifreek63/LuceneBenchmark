@@ -14,7 +14,7 @@ public class Benchmark {
 		Indexer indexer = new Indexer();
 		indexer.addEntry();
 		SearchEngine se = new SearchEngine(indexer.getRamDir());
-		ScoreDoc[]hits = se.performSearch("a", 1);
+		ScoreDoc[]hits = se.performSearch("a b c", 1);
 		System.out.println("Found " + hits.length + " hits.");
 		for(int i=0;i<hits.length;++i) {
 		 Document d = se.getDocument(hits[i].doc);

@@ -29,7 +29,7 @@ public class Indexer {
     	return index;
     }
 
-    public IndexWriter getIndexWriter(boolean create) throws IOException {
+    public IndexWriter getIndexWriter() throws IOException {
         if (indexWriter == null) {
         	IndexWriterConfig config = new IndexWriterConfig(Version.LUCENE_4_10_3, new StandardAnalyzer());
         	index = new RAMDirectory(); // This creates an index in the RAMDirectory            
@@ -45,21 +45,22 @@ public class Indexer {
    }
 
     public void addEntry() throws IOException {
-        IndexWriter writer = getIndexWriter(false);
+        IndexWriter writer = getIndexWriter();
         Document doc = new Document();
         doc.add(new StringField("title", "doc-title", Field.Store.YES));
         doc.add(new StringField("id", "a", Field.Store.YES));
         doc.add(new StringField("name", "b", Field.Store.YES));
         doc.add(new StringField("city", "c", Field.Store.YES));
-        doc.add(new TextField("content", "a b c", Field.Store.NO));
+        doc.add(new TextField("content", "a b c", Field.Store.YES));
         writer.addDocument(doc);
+        writer.commit();
     }
 
     public void rebuildIndexes() throws IOException {
           //
           // Erase existing index
           //
-          getIndexWriter(true);
+          getIndexWriter();
           //
           // Index all Accommodation entries
           //
